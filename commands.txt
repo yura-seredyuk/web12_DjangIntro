@@ -1,0 +1,16 @@
+Create 
+
+1. python -m venv env   or python3.8 -m venv env
+2. env\Scripts\activate or . env\bin\activate
+3. pip install django 
+4. django-admin startproject mysite   or django-admin startproject mysite .  - create new project
+4.1 if you dont use '.' make 'cd mysite' command 
+5. python manage.py migrate - create data_base file
+6. python manage.py runserver - run project/ (Ctrl + C  - stop executing)
+6.1 python manage.py runserver 127.0.0.1:8001 - if need to change port or ip address
+7. python manage.py createsuperuser - create super user for mahaging admin panel and data_base from the admin pahel
+8. python manage.py startapp news  - create new application
+8.1 add application name into INSTALLED_APPS list in settings.py file
+8.2 create models for tables into the models.py in current application
+9. python manage.py makemigrations news - create or change tables in data_base
+10. python manage.py migrate news - apply chages into data_base
