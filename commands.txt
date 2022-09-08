@@ -14,3 +14,10 @@ Create
 8.2 create models for tables into the models.py in current application
 9. python manage.py makemigrations news - create or change tables in data_base
 10. python manage.py migrate news - apply chages into data_base
+
+Clone
+1. git clone ...
+2. create and activate env
+2.1 cd to cloned directory
+3. pip install -r requirements.txt
+4. if data_base is not in the repository, you need to make migration (python manage.py migrate) 
