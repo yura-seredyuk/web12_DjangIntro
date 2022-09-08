@@ -5,8 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News</title>
+    <style>
+        body{
+            background-color: aquamarine;
+        }
+    </style>
 </head>
 <body>
+    <header></header>
     <h1>Posts</h1>
     {% for post in posts %}
     <div class="post">
@@ -17,5 +23,6 @@
         <p>{{ post.text }}</p>
     </div>
     {% endfor %}
+    <footer></footer>
 </body>
 </html>
