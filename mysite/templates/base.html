@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News site</title>
+    <!-- START CSS STYLES -->
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+    {% include 'layers/styles.html' %}
+    {% block styles %}{% endblock %}
+    <!-- END CSS STYLES -->
+</head>
+<body>
+    <!-- HEADER -->
+    {% include 'layers/header.html' %}
+    <main>
+        <!-- MAIN CONTENT -->
+        {% block content %}
+        {% endblock %}
+    </main>
+    <!-- FOOTER -->
+    {% include 'layers/footer.html' %}
+    <!-- START SCRIPTS -->
+    {% block scripts %}{% endblock %}
+    {% include 'layers/scripts.html' %}
+    <!-- END SCRIPTS -->
+</body>
+</html>
