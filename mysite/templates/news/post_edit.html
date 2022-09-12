@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="{% url 'post_list' %}">News</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Post {{post.pk}}</li>
+    </ol>
+</nav>
+{% endblock %}
+{% block content %}
+        <div class="post">
+            <form action="" class="post-form" method="post">
+                {%csrf_token%}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+{% endblock %}   

@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
-
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="{% url 'post_list' %}">News</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Post {{post.pk}}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
         <div class="post">
             <div class="date">
@@ -7,5 +14,7 @@
             </div>
             <h3><a href="">{{ post.title }}</a></h3>
             <p>{{ post.text }}</p>
+            <a class="btn btn-warning" href="{% url 'post_edit' pk=post.pk %}" ><span class="bi bi-pencil"></span> Edit</a>
+            <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}" ><span class="bi bi-trash"></span> Delete</a>
         </div>
 {% endblock %}   

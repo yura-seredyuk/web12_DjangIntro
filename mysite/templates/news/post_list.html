@@ -6,6 +6,13 @@
         }
     </style>
 {% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active">News</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
         <h3>Posts</h3>
         {% for post in posts %}
@@ -13,7 +20,7 @@
             <div class="date">
                 <p>published: {{ post.published_date }}</p>
             </div>
-            <h3><a href="">{{ post.title }}</a></h3>
+            <h3><a href="{% url 'post_details' pk=post.pk %}">{{ post.title }}</a></h3>
             <p>{{ post.text }}</p>
         </div>
         {% endfor %} 
