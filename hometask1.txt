@@ -1,0 +1,5 @@
+classwork: https://github.com/yura-seredyuk/web12_DjangIntro 
+
+
+Завдання:
+    Налаштувати зовнішній вигляд контейнерів для повідомлень, а також блоків header i footer.

@@ -21,3 +21,37 @@ Clone
 2.1 cd to cloned directory
 3. pip install -r requirements.txt
 4. if data_base is not in the repository, you need to make migration (python manage.py migrate) 
+
+
+USING (sqlite3) Django ORM QuerySets
+python manage.py shell - перейти в режим QuerySets
+>>> from news.models import Post - імпорт об'єкта 
+>>> Post.objects.all() - виведення усіх постів об'єкта Post
+>>> from django.contrib.auth.models import User 
+>>> User.objects.all()
+>>> me = User.objects.get(username="admin") - отримання одного об'єкта з таблиці БД
+>>> Post.objects.create(author=me, title="Title 4", text="Text 4") - створення нового поста
+>>> Post.objects.get(title="Title 4")
+<Post: admin Title 4>
+>>> Post.objects.filter(title="Title 4") 
+<QuerySet [<Post: admin Title 4>]>
+>>> Post.objects.filter(title__contains="Title")   
+<QuerySet [<Post: admin Title1>, <Post: admin Title2>, <Post: admin Title3>, <Post: admin Title 4>]>
+>>> Post.objects.filter(title__contains="Title").all()
+<QuerySet [<Post: admin Title1>, <Post: admin Title2>, <Post: admin Title3>, <Post: admin Title 4>]>
+>>> Post.objects.filter(title__contains="Title").first()
+<Post: admin Title1>
+>>> Post.objects.filter(author=me) 
+<QuerySet [<Post: admin Title1>, <Post: admin Title2>, <Post: admin Title3>, <Post: admin Title 4>]>
+>>> post = Post.objects.get(title="Title 4")
+>>> post.publish()
+>>> from django.utils import timezone
+>>> Post.objects.filter(published_date__lte=timezone.now())
+<QuerySet [<Post: admin Title1>, <Post: admin Title2>, <Post: admin Title 4>]>
+
+>>> Post.objects.filter(published_date__lte=timezone.now()).order_by("published_date")
+<QuerySet [<Post: admin Title1>, <Post: admin Title2>, <Post: admin Title 4>]>
+>>> Post.objects.filter(published_date__lte=timezone.now()).order_by("-published_date") 
+<QuerySet [<Post: admin Title 4>, <Post: admin Title2>, <Post: admin Title1>]>
+
+>>> exit()
