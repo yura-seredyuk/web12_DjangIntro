@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Log In{% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="{% url 'post_list' %}">News</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Log In</li>
+    </ol>
+</nav>
+{% endblock %}
+{% block content %}
+    <h1>Log In</h1>
+    <p>Please, set your username and password in the form:</p>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p><input type="submit" value="Log-in"></p>
+    </form>
+{% endblock %}

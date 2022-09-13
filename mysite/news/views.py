@@ -1,7 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, LoginForm
 
 
 def post_list(request):
@@ -36,3 +41,32 @@ def post_delete(request, pk):
     post.delete()
     return redirect('post_list')
 
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd["username"], password=cd["password"])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    # return HttpResponse('Authenticated successfully!')
+                    return redirect('post_list')
+                else:
+                    return HttpResponse('Disabled account!')
+            else:
+                return HttpResponse('Invalid username or password!')
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form':form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('post_list')
+
+
+def user_signin(request):
+    
+    return render(request, 'register.html')
