@@ -12,7 +12,6 @@ from .forms import PostForm, LoginForm
 def post_list(request):
     # posts = Post.objects.all()
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    print(posts)
     return render(request,'news/post_list.html', {'posts':posts})
 
 
@@ -68,5 +67,10 @@ def user_logout(request):
 
 
 def user_signin(request):
-    
+    if request.method == 'POST':
+        user = {"username": request.POST["username"],
+                "password": request.POST["password"],
+                "email": request.POST["email"]}
+        created_user = User.objects.create_user(**user)
+        return redirect('login')
     return render(request, 'register.html')

@@ -11,11 +11,13 @@
 {% block content %}
         <div class="post">
             <div class="date">
-                <p>published: {{ post.published_date }}</p>
+                <p>published: {{ post.published_date }} <i>{{ post.author }}</i></p>
             </div>
-            <h3><a href="">{{ post.title }}</a></h3>
+            <h3>{{ post.title }}</h3>
             <p>{{ post.text }}</p>
+            {% if user.is_authenticated and post.author.pk == user.pk %}
             <a class="btn btn-warning" href="{% url 'post_edit' pk=post.pk %}" ><span class="bi bi-pencil"></span> Edit</a>
             <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}" ><span class="bi bi-trash"></span> Delete</a>
+            {% endif %}
         </div>
 {% endblock %}   

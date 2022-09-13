@@ -9,9 +9,9 @@
 </nav>
 {% endblock %}
 {% block content %}
-    <h1>Log In</h1>
+    <h1>Sign In</h1>
     <p>Please, provide your data:</p>
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'register' %}" method="post" name="register">
         {% csrf_token %}
         <label for="username">Username:</label>
         <input type="text" name="username" id="username"><br>
