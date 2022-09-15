@@ -1,0 +1,6 @@
+classwork: https://github.com/yura-seredyuk/web12_DjangIntro 
+
+
+Завдання:
+    Вирішити завдання із відображенням зображень на сторніках сайту(news/..)
+

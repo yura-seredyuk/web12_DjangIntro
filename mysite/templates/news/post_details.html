@@ -9,15 +9,22 @@
 </nav>
 {% endblock %}
 {% block content %}
-        <div class="post">
-            <div class="date">
-                <p>published: {{ post.published_date }} <i>{{ post.author }}</i></p>
+        <div class="post row">
+            {% if post.image %}
+            <div class="col-2">
+                <img src="{{post.image.url}}" alt="">
             </div>
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.text }}</p>
-            {% if user.is_authenticated and post.author.pk == user.pk %}
-            <a class="btn btn-warning" href="{% url 'post_edit' pk=post.pk %}" ><span class="bi bi-pencil"></span> Edit</a>
-            <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}" ><span class="bi bi-trash"></span> Delete</a>
             {% endif %}
+            <div class="{% if post.image %}col-10{% else %}col-12{% endif %}">
+                <div class="date">
+                    <p>published: {{ post.published_date }} <i>{{ post.author }}</i></p>
+                </div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.text }}</p>
+                {% if user.is_authenticated and post.author.pk == user.pk %}
+                <a class="btn btn-warning" href="{% url 'post_edit' pk=post.pk %}" ><span class="bi bi-pencil"></span> Edit</a>
+                <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}" ><span class="bi bi-trash"></span> Delete</a>
+                {% endif %}
+            </div>
         </div>
 {% endblock %}   

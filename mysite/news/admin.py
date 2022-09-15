@@ -9,7 +9,5 @@ class PostAdmin(admin.ModelAdmin):
     raw_id_fields = ('author',)
     date_hierarchy = 'published_date'
     ordering = ['author', 'published_date']
-    fields = ( 'image_tag', )
-    # readonly_fields = ('image_tag',)
 
 admin.site.register(Post, PostAdmin)
